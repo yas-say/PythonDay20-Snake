@@ -17,6 +17,11 @@ screen.tracer(0)
 # t2.setpos(x=t1.xcor()-20, y=0)
 # t3.setpos(x=t2.xcor()-20, y=0)
 snake = Snake()
+screen.listen()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.left, "Left")
+screen.onkey(snake.right, "Right")
 
 game_on = True
 while game_on:
