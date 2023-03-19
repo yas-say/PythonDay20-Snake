@@ -10,14 +10,26 @@ class Scoreboard(Turtle):
         self.color("white")
         self.penup()
         self.goto(0, 280)
-        self.write(f"Score: {self.score}", move=False, align=ALIGNMENT, font=FONT)
+        self.highscore = self.read_hiscore()
+        print(self.highscore)
+        self.write(f"Score: {self.score} and HI Score: {self.highscore}", move=False, align=ALIGNMENT, font=FONT)
 
     def increment_score(self):
         self.score += 1
         self.clear()
-        self.write(f"Score: {self.score}", move=False, align=ALIGNMENT, font=FONT)
+        if self.score > int(self.highscore):
+            self.highscore = self.score
+            with open("hiscore.txt", mode = 'w') as file:
+                file.write(str(self.highscore))
+        self.write(f"Score: {self.score} and HI Score: {self.highscore}", move=False, align=ALIGNMENT, font=FONT)
 
     def game_over(self):
         self.goto(0,0)
         self.write(f"GAME OVER", move=False, align=ALIGNMENT, font=FONT)
+
+    def read_hiscore(self):
+        with open("hiscore.txt") as file:
+            return file.read()
+
+
 
